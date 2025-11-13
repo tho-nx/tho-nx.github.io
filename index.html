@@ -1,494 +1,358 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Xuyên qua mọi chiến tuyến — Nguyễn Xuân Thọ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XUYÊN QUA MỌI CHIẾN TUYẾN &#8201;–&#8201; Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Thêm các font cần thiết: Playfair Display (Serif), Dancing Script (Handwriting) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <!-- Fonts: STIX Two Text (title), Merriweather (body), Inter (UI/buttons) -->
-  <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600;700&family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        /* Định nghĩa font tùy chỉnh */
+        .font-serif-custom { font-family: 'Playfair Display', serif; }
+        .font-handwriting { font-family: 'Dancing Script', cursive; }
+        .font-body { font-family: 'Inter', sans-serif; }
 
-  <style>
-    :root{
-      --bg:#FBF5EE;
-      --accent:#7a4b2b;
-      --muted:#9b7b63;
-      --card:#fff8f2;
-      --shadow: rgba(122,75,43,0.12);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: 'Merriweather', serif;
-      background: radial-gradient(circle at 10% 10%, rgba(255,244,234,0.6), transparent 20%), var(--bg);
-      color:#35241a;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
-    .container{max-width:1100px;margin:48px auto;padding:24px}
+        /* Nền chính - Bức tường cũ/Giấy cũ */
+        body {
+            /* fallback color */
+            background-color: #3e332f;
+            /* sử dụng ảnh tường cũ từ assets và giữ cố định khi scroll */
+            background-image: url('assets/old-wall-texture_548832-17966.avif');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* <-- giữ ảnh tường cố định */
+            background-size: cover; /* phủ toàn bộ */
 
-    /* Section spacing updated */
-    .section{
-      background:var(--card);
-      padding:20px;
-      border-radius:10px;
-      box-shadow:0 8px 20px var(--shadow);
-      margin-top:44px;
-      margin-bottom:44px;
-    }
+            color: #4a3e36; /* Màu chữ nâu đen */
+            font-family: 'Inter', sans-serif;
+            padding: 40px 0 140px 0; /* Tăng padding dưới để tránh thanh nav bar che mất nội dung */
+        }
 
-    /* hero */
-    .hero{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
-    .cover-wrap{display:flex;justify-content:center}
 
-    .book-cover{
-      width:320px;max-width:90%;
-      box-shadow:0 12px 30px var(--shadow);
-      border-radius:6px;
-      border:1px solid rgba(0,0,0,0.04);
-      background:linear-gradient(180deg,#fffaf6, #efe2d7);
-      padding:18px;
-      position:relative;
-      overflow:hidden;
-      transform:rotate(-1deg);
-    }
-    .book-cover .band{
-      position:absolute;left:-40px;top:30px;
-      transform:rotate(-18deg);
-      background:linear-gradient(90deg,#7a4b2b,#a66b3c);
-      color:#fff;padding:8px 80px;font-weight:700;letter-spacing:1px;opacity:0.95
-    }
-    .book-cover svg{display:block;width:100%;height:auto}
+        /* Container chính với hiệu ứng giấy cháy xém */
+        .vintage-container {
+            position: relative;
+            background-color: #fcfbf8; /* Màu giấy kem */
+            /* Box Shadow: Tạo hiệu ứng cháy xém (inset) và đổ bóng (standard) */
+            box-shadow: 
+                0 0 15px rgba(0, 0, 0, 0.5), /* Đổ bóng ra ngoài */
+                inset 0 0 15px rgba(0, 0, 0, 0.9), /* Cháy đen sát mép */
+                inset 0 0 30px rgba(139, 69, 19, 0.5); /* Lớp cháy nâu đỏ nhạt hơn */
+            
+            border: 10px solid #7d6b5e; /* Viền nâu đậm cơ sở */
+            filter: sepia(0.2) contrast(1.1); /* Tăng Sepia và Contrast để trông cũ kỹ hơn */
+            
+            /* Scorched Edge Effect - Giả lập viền cháy/rách */
+            /* Dùng border-image đơn giản hơn, màu tối để mô phỏng cạnh cháy */
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><filter id="f" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="n" /><feDisplacementMap in="SourceGraphic" in2="n" scale="8" xChannelSelector="R" yChannelSelector="G" /></filter></defs><rect width="100" height="100" fill="transparent" stroke="%23222222" stroke-width="10" filter="url(%23f)"/></svg>') 30 round;
+        }
 
-    .hero-text h1{
-      font-family:'STIX Two Text', serif;
-      font-size:36px;
-      text-align:center;
-      margin:0 0 8px;
-      color:var(--accent)
-    }
-    .hero-text .quote{
-      font-style:italic;color:var(--muted);
-      margin:12px 0;padding-left:12px;
-      border-left:4px solid rgba(122,75,43,0.12)
-    }
-    .author{
-      margin-top:0px;
-      font-weight:700;
-      font-family:'Merriweather', serif;
-      text-align:right;
-    }
+        /* Hiệu ứng băng chéo */
+        .release-banner {
+            position: absolute;
+            top: 30px;
+            right: -80px;
+            background-color: #a02020;
+            color: white;
+            padding: 5px 60px;
+            font-size: 14px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
 
-    .cards-row{display:flex;gap:18px;align-items:stretch}
-    .card{
-      flex:1;background:var(--card);
-      padding:20px;border-radius:10px;
-      box-shadow:0 8px 20px var(--shadow);
-      display:flex;flex-direction:column
-    }
-    .card h3{font-family:'STIX Two Text', serif;margin:0 0 8px;text-align:center;font-size:24px;}
-    .card .card-body{flex:1;overflow:auto}
+        /* Style cho Card Polaroid */
+        .polaroid-card {
+            background-color: #f7f7f7;
+            padding: 10px 10px 20px 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .polaroid-card:hover {
+            transform: translateY(-5px) rotate(-1deg);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
 
-    /* FIX: author-photo sizing so it doesn't expand and cover content */
-    .about{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start}
-    .author-photo{
-      width:120px;
-      height:120px;
-      min-width:120px;
-      border-radius:6px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,0.06);
-      background:#efe0d2;
-      display:block;
-      flex-shrink:0;
-    }
-    .author-photo img{
-      display:block;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
+        /* Scroll ngang cho mobile */
+        @media (max-width: 768px) {
+            .horizontal-scroll-container {
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+                white-space: nowrap;
+                padding-bottom: 20px;
+            }
+            .polaroid-card {
+                display: inline-block;
+                width: 70vw; /* Chiều rộng card trên mobile */
+                margin-right: 20px;
+                white-space: normal;
+                flex-shrink: 0;
+            }
+        }
 
-    .toc{max-height:320px;overflow:auto;padding-right:8px}
-    .toc ul{margin:0;padding:0 8px;list-style:none}
-    .toc li{padding:8px 0;border-bottom:1px dashed rgba(122,75,43,0.06)}
-
-    /* make toc-preview clearly interactive */
-    .toc-preview{cursor:pointer;color:var(--accent);text-decoration:underline}
-    .toc-preview:hover{color:var(--accent);text-decoration:underline}
-
-    /* ALBUM SECTION (NEW SEPARATE SECTION) */
-    .albums-section{
-      background:var(--card);
-      padding:26px;
-      border-radius:12px;
-      box-shadow:0 8px 20px var(--shadow);
-      margin-top:44px;
-      margin-bottom:44px;
-    }
-
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:60} .modal.open{display:flex} .modal-content{width:90%;max-width:1000px;background:#fff;border-radius:8px;padding:16px;display:flex;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,0.4)} .preview-main{flex:2;display:flex;align-items:center;justify-content:center} .preview-main img{max-width:100%;max-height:70vh;border-radius:6px} .preview-thumbs{flex:1;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:6px} .preview-thumbs img{width:100%;height:80px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:0.9} .modal-close{position:absolute;top:18px;right:18px;background:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-
-    .section-heading{
-      font-size:32px;
-      font-family:'STIX Two Text', serif;
-      text-align:center;
-      margin:0 0 10px;
-      color:var(--accent);
-    }
-
-    .albums-sub{
-      text-align:center;
-      color:var(--muted);
-      margin:0 0 20px;
-      font-size:15px;
-    }
-
-    .albums{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:18px;
-      margin-top:12px;
-    }
-    .album{
-      background:#f7efe6;
-      border-radius:10px;
-      padding:16px;
-      cursor:pointer;
-      min-height:120px;
-      border:1px solid rgba(122,75,43,0.06);
-      display:flex;flex-direction:column;gap:8px
-    }
-    .album .title{
-      font-weight:700;color:var(--accent);
-      font-family:'STIX Two Text', serif
-    }
-    .album .meta{
-      font-size:14px;color:var(--muted);
-      font-family:'Merriweather', serif
-    }
-
-    /* Floating pre-read card */
-    .float-card{
-      position:fixed;
-      right:20px;
-      bottom:20px;
-      width:360px;
-      max-width:calc(100% - 40px);
-      background:#fffdfb;
-      border:1px solid rgba(122,75,43,0.12);
-      box-shadow:0 18px 40px rgba(0,0,0,0.25);
-      border-radius:12px;
-      padding:14px;
-      transform:translateY(14px) scale(0.98);
-      opacity:0;
-      transition:all .18s ease;
-      z-index:80;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      pointer-events:none;
-    }
-    .float-card.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
-    .float-head{display:flex;align-items:center;justify-content:space-between}
-    .float-head h4{margin:0;font-size:16px;color:var(--accent);font-family:'STIX Two Text',serif}
-    .float-body{font-size:14px;color:var(--muted);max-height:240px;overflow:auto;line-height:1.45}
-    .float-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
-    .close-x{background:transparent;border:0;font-size:18px;cursor:pointer;color:var(--muted)}
-
-    /* checkout */
-    .checkout{display:flex;gap:14px;align-items:center;justify-content:space-between;margin-top:24px}
-    .price{font-size:22px;font-weight:700;color:var(--accent);font-family:'STIX Two Text', serif}
-    .btn-primary{
-      background:linear-gradient(180deg,#8b5a3c,#6e4429);
-      color:#fff;padding:12px 20px;border-radius:8px;
-      text-decoration:none;font-weight:700;
-      font-family:'Inter',sans-serif;
-      box-shadow:0 8px 18px rgba(110,68,41,0.12)
-    }
-
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr;}
-      .cards-row{flex-direction:column}
-      .checkout{flex-direction:column;align-items:flex-start}
-      .float-card{right:12px;left:12px;width:auto}
-      .about{grid-template-columns:80px 1fr}
-      .author-photo{width:80px;height:80px;min-width:80px}
-    }
-  </style>
+        /* Nền Spotlight tách biệt */
+        .spotlight-bg {
+            background-color: #fff8e1; /* Màu giấy vàng nhạt/kem */
+            border-radius: 10px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Style cho Floating Nav Bar Buttons */
+        .nav-button {
+            color: #fcfbf8; /* Màu chữ giấy kem */
+            font-size: 0.8rem; /* Kích thước nhỏ hơn trên mobile */
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 9999px; /* rounded-full */
+            transition: background-color 0.2s, transform 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0; /* Quan trọng cho cuộn ngang */
+        }
+        .nav-button:hover {
+            background-color: #a02020; /* Màu đỏ gạch đậm hơn */
+        }
+        .cta-button {
+            background-color: #fdb92c; /* Màu vàng CTA */
+            color: #4a3e36; /* Màu nâu đen */
+            font-weight: 700;
+        }
+        .cta-button:hover {
+            background-color: #fdd574;
+        }
+    </style>
 </head>
+<body class="font-body">
 
-<body>
-  <div class="container">
+    <div class="vintage-container max-w-4xl mx-auto rounded-lg overflow-hidden p-6 md:p-10 border-0">
+        <!-- HEADER VÀ BANNER RA MẮT -->
+        <header class="text-center relative pt-12 pb-16">
+            <div class="release-banner">Ra mắt 21/11/2025</div>
+            
+            <img src="https://placehold.co/300x400/8B4513/FFFFFF?text=XUYEN+QUA+MOI+CHIEN+TUYEN" 
+                 alt="Mockup cuốn sách XUYÊN QUA MỌI CHIẾN TUYẾN" 
+                 class="w-48 md:w-64 h-auto mx-auto mb-8 border-4 border-stone-800 rounded-lg shadow-2xl">
+            
+            <h1 class="font-serif-custom text-5xl md:text-7xl uppercase mb-2 leading-tight text-red-900 drop-shadow-md">
+                XUYÊN QUA MỌI CHIẾN TUYẾN
+            </h1>
+            <p class="text-lg md:text-xl italic text-stone-700">
+                (Ký sự Tư liệu - Tác giả: Nguyễn Xuân Thọ)
+            </p>
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="book-title">
-      <div class="cover-wrap">
-        <figure class="book-cover" aria-hidden="true">
-          <div class="band">TẬP I</div>
-          <!-- COVER SVG KEPT UNCHANGED -->
-          <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8efe3"/><stop offset="1" stop-color="#e9dacb"/></linearGradient></defs>
-            <rect width="100%" height="100%" fill="url(#g1)" />
-            <rect x="18" y="18" width="364" height="564" fill="none" stroke="#b88a6a" stroke-width="4" rx="6"/>
-            <g transform="translate(40,120)">
-              <text x="0" y="0" font-family="Playfair Display" font-size="36" fill="#5b3a2b">Tên cuốn sách</text>
-              <text x="0" y="50" font-family="Libre Baskerville" font-size="16" fill="#6f4e3a">Một hành trình xuyên thời gian</text>
-            </g>
-            <g transform="translate(200,360)" fill="#7a4b2b"><path d="M0-20 C10 -40, 40 -40, 50 -20 C40 -10, 10 -10, 0 -20 Z"/></g>
-            <text x="24" y="560" font-family="Libre Baskerville" font-size="14" fill="#7a4b2b">Tác giả: Họ Tên</text>
-          </svg>
-        </figure>
-      </div>
+            <blockquote class="my-10 text-xl md:text-2xl italic font-handwriting text-stone-600 border-l-4 border-red-800 pl-4 mx-auto max-w-2xl">
+                "Thực ra kẻ thù cũng là người" - Manfred Hinrich
+            </blockquote>
 
-      <div class="hero-text">
-        <h1 id="book-title">Xuyên qua mọi chiến tuyến — Ký sự tư liệu</h1>
-        <p class="quote">"Chiến tranh là cái lò tạo ra hận thù, giết chóc. Nhưng chiến tranh cũng là thước đo cho tình người ở mức cao nhất."</p>
-        <p class="author">Nguyễn Xuân Thọ • 2025</p>
-        <p style="margin-top:18px">Một tập ký sự tư liệu dựa trên hồi ức nhân chứng, nhật ký và cuộc gặp gỡ xuyên quốc gia — từ những trang nhật ký Đặng Thùy Trâm đến câu chuyện của những người mẹ, những người lính, và nỗ lực hòa giải dân tộc.</p>
-      </div>
-    </section>
+            <h2 class="text-2xl md:text-3xl font-bold mt-10 mb-4 text-stone-800">
+                MỘT GÓC NHÌN KHÁC VỀ LỊCH SỬ VÀ TÌNH NGƯỜI
+            </h2>
+            <p class="text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                Chiến tranh không chỉ có súng đạn và hận thù. Ở nơi sâu thẳm nhất của những chiến tuyến đối đầu, tình người vẫn âm thầm cháy, tạo nên những điều kỳ diệu mà lý trí khó lòng giải thích.
+            </p>
+            <p class="text-base md:text-lg max-w-3xl mx-auto leading-relaxed mt-4 italic font-semibold text-red-800">
+                "Xuyên qua mọi chiến tuyến" không phải là cuốn sách viết về thắng - thua. Đây là hành trình của những trái tim dũng cảm, tìm kiếm sự thật lịch sử bằng cái nhìn khoa học và nhân văn, vượt qua mọi thiên kiến để hàn gắn vết thương chung của dân tộc.
+            </p>
+        </header>
+        
+        <!-- SECTION 2: NHỮNG "ĐIỀU KỲ DIỆU" CÓ THẬT TRONG SÁCH (Card Polaroid) -->
+        <section class="mt-16 pt-10 border-t-2 border-dashed border-stone-300" id="ky-dieu">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-8 font-serif-custom uppercase text-red-900">
+                NHỮNG "ĐIỀU KỲ DIỆU" CÓ THẬT TRONG SÁCH
+            </h3>
+            <p class="text-center mb-10 max-w-3xl mx-auto text-stone-700">
+                Cuốn sách tập hợp những tư liệu sống động, được tác giả Nguyễn Xuân Thọ dày công thu thập từ Đức, Mỹ đến Việt Nam, phơi bày những góc khuất lịch sử chưa từng được kể.
+            </p>
 
-    <!-- SECTION 2: ABOUT + TOC -->
-    <section class="section" aria-labelledby="section-2">
-      <h3 class="section-heading">Giới thiệu</h3>
+            <!-- Card Layout: 3 cột (Desktop) / Card trượt ngang (Mobile) -->
+            <div class="md:grid md:grid-cols-3 md:gap-8 horizontal-scroll-container">
+                
+                <!-- Card 1 -->
+                <div class="polaroid-card rotate-1 transform hover:rotate-0">
+                    <img src="https://placehold.co/200x250/C0C0C0/333333?text=Anh+linh+va+nhat+ky" 
+                         alt="Hình ảnh áp phích phim Đừng Đốt" 
+                         class="w-full h-auto object-cover mb-4 border border-stone-400">
+                    <p class="text-lg font-semibold mb-2 text-stone-900">1. Hành trình hồi hương của cuốn nhật ký "có lửa”.</p>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Câu chuyện về Trung sĩ VNCH Nguyễn Trung Hiếu – người đã không đốt cuốn nhật ký của bác sĩ Đặng Thùy Trâm vì nể trọng một tâm hồn cao đẹp phía bên kia chiến tuyến. Một hành trình 35 năm đầy ám ảnh để đưa kỷ vật về lại với gia đình liệt sĩ, được ví như một "điều kỳ diệu của tình người".
+                    </p>
+                </div>
 
-      <div class="cards-row">
+                <!-- Card 2 -->
+                <div class="polaroid-card -rotate-2 transform hover:rotate-0">
+                    <img src="https://placehold.co/200x250/333333/FFFFFF?text=Hai+nguoi+linh+gia+HB" 
+                         alt="Ảnh đen trắng hai người lính già" 
+                         class="w-full h-auto object-cover mb-4 border border-stone-400 filter grayscale">
+                    <p class="text-lg font-semibold mb-2 text-stone-900">2. Tình bạn khó tin giữa hai người lính già.</p>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Anh Phong (bộ đội Hà Nội) và anh Bình (Thủy quân lục chiến Sài Gòn, nay bán vé số trên xe lăn) từng xả súng vào nhau trong trận chiến khốc liệt tại Thành cổ Quảng Trị 50 năm trước. Ngày nay, họ ngồi lại bên nhau, chia sẻ nỗi đau và sự cảm thông của những người cùng chung số phận.
+                    </p>
+                </div>
 
-        <!-- ABOUT AUTHOR -->
-        <div class="card">
-          <div class="card-head">
-            <h3>Về tác giả</h3>
-            <div style="color:var(--muted);font-size:13px;text-align:center;margin-top:6px">Nguyễn Xuân Thọ — ký giả &amp; tác giả của tập ký sự tư liệu</div>
-          </div>
-          <div class="card-body">
-            <div class="about">
-              <div class="author-photo" aria-hidden="true">
-                <!-- Small placeholder svg scaled to box -->
-                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%' height='100%' fill='%23efe0d2'/><text x='50%' y='48%' dominant-baseline='middle' text-anchor='middle' font-family='Merriweather' font-size='28' fill='%237a4b2b'>Nguyễn Xuân</text><text x='50%' y='62%' dominant-baseline='middle' text-anchor='middle' font-family='Merriweather' font-size='28' fill='%237a4b2b'>Thọ</text></svg>">
-              </div>
-              <div class="bio">
-                <p>Nguyễn Xuân Thọ sinh sống và làm việc tại Châu Âu — cuốn sách được hoàn thành tại Cologne tháng 12/2024, với nhiều chương gửi nhân chứng đối chiếu.</p>
-                <p style="margin-top:8px;color:var(--muted);font-size:13px">Liên hệ: nxb.tttt@mst.gov.vn • ISBN 978-604-45-1887-9</p>
-              </div>
+                <!-- Card 3 -->
+                <div class="polaroid-card rotate-3 transform hover:rotate-0 md:mt-0 mt-4">
+                    <img src="https://placehold.co/200x250/F5DEB3/333333?text=Me+va+con+gai" 
+                         alt="Ảnh ghép hai mẹ con sau 44 năm" 
+                         class="w-full h-auto object-cover mb-4 border border-stone-400">
+                    <p class="text-lg font-semibold mb-2 text-stone-900">3. Cuộc đoàn tụ cổ tích sau 44 năm lạc mất nhau.</p>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Chị Đẹp, người mẹ Việt Nam đã mòn mỏi tìm con suốt gần nửa thế kỷ sau chiến dịch Babylift năm 1975. Nhờ sự kiên trì và lòng nhân ái, chị đã tìm lại được đứa con gái Leigh Mai (Phương Mai) ngỡ đã mất tích mãi mãi, một câu chuyện đoàn tụ đầy xúc động.
+                    </p>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <!-- TOC -->
-        <div class="card">
-          <div class="card-head">
-            <h3>Mục lục</h3>
-          </div>
-          <div class="card-body">
-            <nav class="toc" aria-label="Mục lục">
-              <ul>
-                <li><strong>Lời giới thiệu</strong></li>
-                <li><strong>Chương 1 — Những quyển sổ thất lạc</strong>
-                  <ul>
-                    <li id="toc-dieu-ky-dieu" class="toc-preview">1. Điều kỳ diệu — trang 5 (PREVIEW AVAILABLE)</li>
-                    <li>2. Đi tìm Thùy — trang 21</li>
-                    <li>3. Bộ nhật ký hồi hương — trang 34</li>
-                    <li>4. Tấm lòng người mẹ — trang 40</li>
-                    <li>5. Những thân phận buồn — trang 45</li>
-                    <li>6. Kẻ thù cũng là người — trang 54</li>
-                  </ul>
-                </li>
-                <li><strong>Chương 2 — Chuyện những người lính</strong></li>
-                <li><strong>Chương 3 — Ông Việt Cộng gốc Đức</strong></li>
-                <li><strong>Chương 4 — Những người mẹ</strong></li>
-                <li><strong>Chương 5 — Ngôi nhà Đức Bảo</strong></li>
-                <li><strong>Chương 6 — Erwin Borchers</strong></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+            <p class="text-center mt-12 text-lg italic text-stone-700">
+                ... Và còn nhiều câu chuyện chấn động khác: Về những người lính lê dương gốc Đức đứng trong hàng ngũ Việt Minh, hay chuyện tình của anh chàng quay phim Tây Đức và cô gái Sài Gòn.
+            </p>
+        </section>
 
-      </div>
-    </section>
+        <!-- SECTION 3: SPOTLIGHT - KHI TÌNH YÊU BĂNG QUA LẰN RANH SINH TỬ -->
+        <section class="mt-16 pt-10 px-6 md:px-10 spotlight-bg" id="spotlight">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-8 font-serif-custom uppercase text-red-800">
+                KHI TÌNH YÊU BĂNG QUA LẰN RANH SINH TỬ
+            </h3>
+            <p class="text-center text-xl italic font-semibold mb-10 text-stone-700">
+                (Trích chương 3: Ông Việt Cộng gốc Đức)
+            </p>
 
-    <!-- SECTION 3: THƯ VIỆN (NEW) -->
-    <section class="albums-section" id="thu-vien">
-      <h3 class="section-heading">Thư viện</h3>
-      <p class="albums-sub">Hình ảnh minh họa: bản đồ cổ, trang sách chọn lọc và tư liệu hiện trường.</p>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div>
+                    <img src="https://placehold.co/300x200/555555/FFFFFF?text=Stephan+quay+phim" 
+                         alt="Stephan Köster vác máy quay" 
+                         class="w-full h-auto object-cover rounded-lg shadow-xl mb-6">
+                    <p class="text-base md:text-lg leading-relaxed mb-6">
+                        Nếu bạn nghĩ chiến tranh chỉ có súng đạn, hãy đọc câu chuyện về Stephan Köster – một chàng trai Đức 27 tuổi, lao đến Sài Gòn khi tất cả đang tìm cách tháo chạy.
+                    </p>
 
-      <div class="albums" id="albums">
-        <div class="album" data-images='["map01","map02","map03"]'>
-          <div class="title">Tư liệu</div>
-          <div class="meta">12 ảnh</div>
-        </div>
+                    <h4 class="text-xl font-bold text-red-900 mb-2">1. Sứ mệnh bí mật:</h4>
+                    <p class="text-base leading-relaxed mb-4">
+                        Ngày 26/4/1975, trên chuyến bay dân sự cuối cùng đáp xuống Tân Sơn Nhất, Stephan bước xuống với vỏ bọc là một nhà báo phương Tây trung lập. Nhưng thực chất, anh mang theo sứ mệnh của tổ chức cánh tả Tây Đức: Quay những thước phim chân thực nhất về "phía bên kia" ngay trong lòng chế độ Sài Gòn.
+                    </p>
 
-        <div class="album" data-images='["page01","page02","page03","page04"]'>
-          <div class="title">Ra mắt sách Tp.HCM</div>
-          <div class="meta">24 ảnh</div>
-        </div>
+                    <h4 class="text-xl font-bold text-red-900 mb-2">2. ❤️ Mối tình sét đánh với "kẻ thù":</h4>
+                    <p class="text-base leading-relaxed mb-4">
+                        Giữa không khí ngột ngạt của lệnh giới nghiêm và tiếng pháo kích, định mệnh đã sắp đặt một cuộc gặp gỡ không tưởng. Chàng quay phim đang làm việc cho "phe Giải phóng" đã phải lòng Xuân – một cô gái Sài Gòn chính hiệu, và trớ trêu thay, nàng lại là nhân viên của Đài Truyền hình Việt Nam Cộng hòa.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold text-red-900 mb-2">3. "Xuyên qua mọi chiến tuyến" ngay trong trái tim:</h4>
+                    <p class="text-base leading-relaxed mb-4">
+                        Chàng giấu nàng thân phận thật. Nàng bỏ lại cơ hội di tản cùng gia đình để ở lại bên chàng. Họ cùng nhau rong ruổi trên chiếc Volkswagen trắng, băng qua những con phố hỗn loạn ngày 30/4, quay lại những khoảnh khắc lịch sử thay đổi vận mệnh dân tộc.
+                    </p>
 
-        <div class="album" data-images='["docs01","docs02"]'>
-          <div class="title">Ra mắt sách Hà Nội</div>
-          <div class="meta">8 ảnh</div>
-        </div>
-      </div>
-      
-      <!-- Checkout (kept inside albums section as before) -->
-      <div class="checkout" style="margin-top:28px">
-        <div>
-          <div style="font-size:13px;color:var(--muted)">Giá bìa</div>
-          <div class="price">₫229,000</div>
-        </div>
-        <a class="btn-primary" href="#checkout">Mua ngay</a>
-      </div>
-    </section>
+                    <p class="text-base leading-relaxed mb-6 italic border-l-2 border-stone-500 pl-3">
+                        Trong mắt Stephan, Xuân không phải là "nhân viên của địch", mà là người con gái anh yêu. Và với Xuân, Stephan là chàng hiệp sĩ ngoại quốc đã che chở cô giữa cơn bão táp lịch sử.
+                    </p>
+                    
+                    <p class="text-base leading-relaxed mb-6 font-semibold">
+                        "Tôi là người Đức, không phải người Mỹ!" - Câu nói Stephan học thuộc lòng để bảo vệ mình và người yêu, đã trở thành một giai thoại bi hài nhưng đầy nhân văn của những ngày tháng Tư năm ấy.
+                    </p>
+                    
+                    <img src="https://placehold.co/300x200/404040/FFFFFF?text=Stephan+ngoi+tren+xe+tang" 
+                         alt="Stephan ngồi trên xe tăng" 
+                         class="w-full h-auto object-cover rounded-lg shadow-xl mb-6">
 
-    <!-- FOOTER -->
-    <footer style="text-align:center;color:var(--muted);font-size:13px">
-      © 2025 Nguyễn Xuân Thọ • XUYÊN QUA MỌI CHIẾN TUYẾN
-    </footer>
+                    <p class="text-base leading-relaxed text-red-800 font-bold">
+                        Mời quý vị đọc cuốn sách để khám phá kết cục của mối tình "Romeo & Juliet" phiên bản chiến tranh Việt Nam này, và xem cách họ đã cùng nhau đi qua những ngày tháng biến động nhất của lịch sử.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  </div>
+        <!-- SECTION 4: TẠI SAO BẠN NÊN ĐỌC CUỐN SÁCH NÀY? -->
+        <section class="mt-16 pt-10 border-t-2 border-dashed border-stone-300" id="vi-sao-doc">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-8 font-serif-custom uppercase text-stone-800">
+                TẠI SAO BẠN NÊN ĐỌC CUỐN SÁCH NÀY?
+            </h3>
+            
+            <div class="max-w-xl mx-auto space-y-4 text-left">
+                <div class="flex items-start">
+                    <span class="text-green-600 text-2xl mr-3 font-bold">✅</span>
+                    <p class="text-lg text-stone-700"><span class="font-bold">Hiểu lịch sử một cách trung thực:</span> Tiếp cận tư liệu từ đa chiều: người thắng, người thua, và cả những người bạn quốc tế.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-600 text-2xl mr-3 font-bold">✅</span>
+                    <p class="text-lg text-stone-700"><span class="font-bold">Chữa lành và hòa hợp:</span> Tìm thấy cảm hứng từ những con người đã vượt qua nỗi đau chiến tranh bằng lòng bao dung và nhân ái.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-600 text-2xl mr-3 font-bold">✅</span>
+                    <p class="text-lg text-stone-700"><span class="font-bold">Tư liệu quý giá:</span> Những chi tiết, hình ảnh và câu chuyện nhân chứng mà tác giả đã trực tiếp gặp gỡ, phỏng vấn tại Đức, Mỹ và Việt Nam.</p>
+                </div>
+            </div>
 
-  <!-- FLOATING PRE-READ CARD (hidden by default) -->
-  <div id="floatCard" class="float-card" role="dialog" aria-hidden="true" aria-labelledby="floatTitle">
-    <div class="float-head">
-      <h4 id="floatTitle">Pre-read — "Điều kỳ diệu" (tr.5)</h4>
-      <button id="closeFloat" class="close-x" aria-label="Đóng">✕</button>
+            <blockquote class="my-10 text-2xl md:text-2xl italic font-handwriting text-stone-600 border-l-4 border-red-800 pl-4 mx-auto max-w-2xl">
+                "Nhân vật của cuốn sách này là những người có thật... nói lên mối quan tâm lớn về nỗ lực có cách nhìn đúng để hòa hợp, sống văn minh." - Nguyễn Thị Ngọc Hải.
+            </blockquote>
+        </section>
+
+        <!-- SECTION 5: VỀ TÁC GIẢ -->
+        <section class="mt-16 pt-10 border-t-2 border-dashed border-stone-300 pb-10" id="ve-tac-gia">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 font-serif-custom uppercase text-stone-800">
+                VỀ TÁC GIẢ
+            </h3>
+
+            <div class="md:flex md:space-x-8 items-start max-w-3xl mx-auto">
+                <img src="https://placehold.co/150x200/808080/FFFFFF?text=Tac+gia+NX+Tho" 
+                     alt="Chân dung tác giả Nguyễn Xuân Thọ" 
+                     class="w-32 h-40 object-cover rounded-lg shadow-xl mx-auto md:mx-0 mb-6 md:mb-0 filter grayscale border-4 border-stone-500 flex-shrink-0">
+                
+                <div class="flex-grow">
+                    <h4 class="text-2xl font-bold text-red-900 mb-2">NGUYỄN XUÂN THỌ</h4>
+                    <p class="text-base leading-relaxed text-stone-700 mb-4">
+                        Sinh năm 1951. Dù có ba má là người miền Nam nhưng ông lại được sinh ra và lớn lên tại miền Bắc giữa những năm tháng khói lửa của chiến tranh.
+                    </p>
+                    <p class="text-base leading-relaxed text-stone-700 mb-6">
+                        Nguyên là cán bộ kỹ thuật Đài Truyền hình Việt Nam, sau đó định cư và làm việc lâu năm tại CHLB Đức. Là nhân chứng sống đã đi qua những biến động lịch sử lớn lao của hai dân tộc: từ chiến tranh Việt Nam, chiến tranh Lạnh tại Đông Đức đến ngày nước Đức thống nhất.
+                    </p>
+                    <blockquote class="text-xl italic font-handwriting text-stone-600 border-l-4 border-red-800 pl-4">
+                        "Tôi viết để thế hệ hôm nay hiểu về lịch sử một cách trung thực, thấy được những góc khuất của chiến tranh mà trước nay ít được nói đến."
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: CALL TO ACTION -->
+        <section class="mt-16 py-12 text-center bg-red-900 text-white rounded-lg shadow-2xl" id="dat-mua">
+            <h3 class="text-3xl md:text-5xl font-bold mb-4 font-serif-custom uppercase tracking-wide">
+                SỞ HỮU NGAY CUỐN SÁCH CHỨA ĐỰNG TÌNH NGƯỜI
+            </h3>
+
+            <p class="text-xl italic mb-8 max-w-2xl mx-auto">
+                "Xuyên qua mọi chiến tuyến" không chỉ là sách lịch sử, đó là liều thuốc tinh thần cho những ai muốn tìm thấy ý nghĩa của sự tha thứ và tình yêu thương.
+            </p>
+
+            <a href="#" class="inline-block bg-amber-400 text-red-900 font-extrabold uppercase py-4 px-12 rounded-full text-xl md:text-2xl shadow-lg transition duration-300 hover:bg-amber-300 hover:shadow-xl transform hover:scale-105 ring-4 ring-amber-200">
+                👉 ĐẶT MUA SÁCH NGAY
+            </a>
+            
+            <p class="mt-8 text-sm opacity-80 max-w-2xl mx-auto">
+                Hãy khám phá những câu chuyện chân thật đẫm nước mắt nhưng cũng đầy tự hào, để thấy rằng lòng nhân ái luôn có sức mạnh phi thường để hàn gắn mọi vết thương.
+            </p>
+        </section>
+
     </div>
-    <div class="float-body" id="floatBody">
-      <!-- Sample excerpt; replace with real excerpt from your file -->
-      <p><strong>Sự tồn tại của bộ nhật ký được tôi coi là điều kỳ diệu của tình người.</strong></p>
-      <p>Hy vọng những tư liệu sống này giúp thế hệ hôm nay hiểu lịch sử một cách trung thực, thấy được góc khuất chiến tranh và nỗi lòng của người trong cuộc.</p>
-      <p style="margin-top:8px;color:var(--muted);font-size:12px">Trích: Chương 1 — Điều kỳ diệu (Trang 5).</p>
+
+    <!-- FLOATING NAVIGATION BAR -->
+    <div id="floating-nav" class="fixed bottom-0 left-0 right-0 z-50 bg-red-900/90 backdrop-blur-sm shadow-2xl p-3 md:p-4 border-t-4 border-amber-400">
+        <nav class="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-4xl mx-auto px-4 overflow-visible whitespace-normal">
+  <a href="#ky-dieu" class="nav-button">Điều Kỳ Diệu</a>
+  <a href="#spotlight" class="nav-button">Spotlight</a>
+  <a href="#vi-sao-doc" class="nav-button">Lý Do Đọc</a>
+  <a href="#ve-tac-gia" class="nav-button">Tác Giả</a>
+  <a href="#dat-mua" class="nav-button cta-button">ĐẶT MUA</a>
+</nav>
+
     </div>
-    <div class="float-foot">
-      <a id="readMoreBtn" class="btn-primary" href="#toc-dieu-ky-dieu" style="background:#7a4b2b">Mua bản in</a>
-    </div>
-  </div>
 
-  <!-- OPTIONAL: Simple album preview modal (placeholders) -->
-  <div id="modal" class="modal" role="dialog" aria-hidden="true" style="display:none;">
-    <div class="modal-close" id="modal-close" title="Đóng" style="position:absolute;top:18px;right:18px;background:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer">✕</div>
-    <div class="modal-content" style="display:flex;gap:12px;align-items:flex-start;max-width:1000px;">
-      <div class="preview-main" style="flex:2;display:flex;align-items:center;justify-content:center;">
-        <img id="preview-img" src="" alt="Preview" style="max-width:100%;max-height:70vh;border-radius:6px">
-      </div>
-      <div id="preview-thumbs" class="preview-thumbs" style="flex:1;display:flex;flex-direction:column;gap:8px;padding:6px;overflow:auto"></div>
-    </div>
-  </div>
-
-  <script>
-    /* ---------- Floating pre-read logic ---------- */
-    const floatCard = document.getElementById('floatCard');
-    const closeFloat = document.getElementById('closeFloat');
-    const readMoreBtn = document.getElementById('readMoreBtn');
-
-    function openFloat() {
-      floatCard.classList.add('open');
-      floatCard.setAttribute('aria-hidden','false');
-      // focus first actionable control for accessibility
-      closeFloat.focus();
-    }
-    function closeFloatFn() {
-      floatCard.classList.remove('open');
-      floatCard.setAttribute('aria-hidden','true');
-    }
-
-    // attach ESC key to close
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && floatCard.classList.contains('open')) closeFloatFn();
-    });
-
-    closeFloat.addEventListener('click', closeFloatFn);
-
-    // attach TOC item(s) to open float
-    const tocPreview = document.getElementById('toc-dieu-ky-dieu');
-    if(tocPreview){
-      tocPreview.addEventListener('click', (e)=>{
-        e.preventDefault && e.preventDefault();
-        openFloat();
-      });
-      tocPreview.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') openFloat(); });
-    }
-
-    // if "Đọc tiếp chương 1" clicked, close float and scroll to TOC item
-    readMoreBtn.addEventListener('click', (e)=>{
-      // default anchor behavior will jump; ensure float closes and smooth scroll
-      e.preventDefault();
-      closeFloatFn();
-      const target = document.getElementById('toc-dieu-ky-dieu');
-      if(target) target.scrollIntoView({behavior:'smooth', block:'center'});
-    });
-
-    // close float when clicking outside it
-    document.addEventListener('click', (e)=>{
-      if(!floatCard.contains(e.target) && !e.target.classList.contains('toc-preview') && floatCard.classList.contains('open')){
-        closeFloatFn();
-      }
-    });
-
-    /* ---------- Album preview (simple placeholders) ---------- */
-    const albums = document.querySelectorAll('.album');
-    const modal = document.getElementById('modal');
-    const modalClose = document.getElementById('modal-close');
-    const previewImg = document.getElementById('preview-img');
-    const previewThumbs = document.getElementById('preview-thumbs');
-
-    function svgDataUrl(text, w=1200, h=800){
-      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'><rect width='100%' height='100%' fill='%23efe2d1'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Merriweather, serif' font-size='48' fill='%237a4b2b'>${text}</text></svg>`;
-      return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-    }
-
-    function openAlbum(images){
-      if(!modal) return;
-      previewThumbs.innerHTML = '';
-      images.forEach((id, idx)=>{
-        const img = document.createElement('img');
-        img.src = svgDataUrl(id,400,300);
-        img.alt = id;
-        img.tabIndex = 0;
-        img.style.width = '100%';
-        img.style.height = '80px';
-        img.style.objectFit = 'cover';
-        img.style.borderRadius = '6px';
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', ()=> setPreview(idx));
-        img.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') setPreview(idx); });
-        previewThumbs.appendChild(img);
-      });
-      setPreview(0);
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden','false');
-    }
-
-    function setPreview(index){
-      const thumbs = Array.from(previewThumbs.querySelectorAll('img'));
-      if(thumbs.length===0) return;
-      const sel = thumbs[index];
-      previewImg.src = sel.src;
-      // highlight selected
-      thumbs.forEach(t=>t.style.opacity = '0.6');
-      sel.style.opacity = '1';
-      sel.scrollIntoView({block:'nearest',behavior:'smooth'});
-    }
-
-    albums.forEach(a=>{
-      a.addEventListener('click', ()=>{
-        const raw = a.getAttribute('data-images');
-        let imgs = [];
-        try{ imgs = JSON.parse(raw);}catch(e){ imgs = []; }
-        const labels = imgs.map(id=> id.replace(/\W/g,' ').toUpperCase());
-        openAlbum(labels);
-      });
-      a.addEventListener('keydown',(e)=>{ if(e.key === 'Enter') a.click(); });
-    });
-
-    if(modalClose){
-      modalClose.addEventListener('click', ()=>{ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); });
-    }
-    if(modal){
-      modal.addEventListener('click', (e)=>{ if(e.target === modal) { modal.style.display='none'; modal.setAttribute('aria-hidden','true'); } });
-    }
-    document.addEventListener('keydown',(e)=>{ if(e.key === 'Escape'){ if(modal) { modal.style.display='none'; modal.setAttribute('aria-hidden','true'); } } });
-
-  </script>
  </body>
 </html>
